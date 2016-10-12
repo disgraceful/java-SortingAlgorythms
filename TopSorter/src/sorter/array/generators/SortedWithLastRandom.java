@@ -1,5 +1,5 @@
 package sorter.array.generators;
-
+import java.util.Arrays;
 
 public class SortedWithLastRandom implements ArrayGenerator {
       @Override public int[] generate(int length,int maxValue){
@@ -7,6 +7,7 @@ public class SortedWithLastRandom implements ArrayGenerator {
         for(int i=0;i<array.length;i++){
             array[i]= (int)(Math.random() * maxValue);
         }
+        Arrays.sort(array);
         int random = (int)(Math.random()*maxValue);
         array[array.length-1] = random;
         return array;

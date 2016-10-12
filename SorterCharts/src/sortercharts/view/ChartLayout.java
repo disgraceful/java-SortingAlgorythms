@@ -29,15 +29,14 @@ import sorter.array.generators.DescSortedArray;
 import sorter.array.generators.RandomArray;
 import sorter.array.generators.SortedWithLastRandom;
 
-
- public class ChartLayout extends Application {
+public class ChartLayout extends Application {
 
     private static BorderPane root = new BorderPane();
     private static Stage window;
     private static Scene displayScene;
-    
-    
-    @Override public void start(Stage primaryStage) {
+
+    @Override
+    public void start(Stage primaryStage) {
         window = primaryStage;
         displayScene = initDisplayScene();
         window.setTitle("Sorter Charts");
@@ -50,47 +49,47 @@ import sorter.array.generators.SortedWithLastRandom;
     }
 
     private static Scene initDisplayScene() {
-       
+
         final GridPane grid = new GridPane();
         grid.setPadding(new Insets(10, 10, 10, 10));
         grid.setVgap(10);
         grid.setHgap(15);
- 
-         final Label arrayLabel = new Label("Sorting array:");
-        
+
+        final Label arrayLabel = new Label("Sorting array:");
+
         ObservableList<ArrayGenerator> variants = FXCollections.observableArrayList(
                 new AscSortedArray(),
                 new SortedWithLastRandom(),
                 new DescSortedArray(),
                 new RandomArray()
         );
-    
+
         final ComboBox arrayCB = new ComboBox(variants);
         arrayCB.setVisibleRowCount(3);
         arrayCB.setValue(new AscSortedArray());
-        
+
         final Label startElementLabel = new Label("Elements number:");
-        final Spinner elementSpinner = new Spinner(0,1000,1,1);
+        final Spinner elementSpinner = new Spinner(0, 1000, 1, 1);
         elementSpinner.setMaxWidth(120);
         elementSpinner.setEditable(true);
         final Button displayButton = new Button();
         displayButton.setText("drawGraph");
-        displayButton.setOnAction(e->{
-            if(arrayCB.getValue()!=null){
-            root.setCenter(ChartBuilder.displayChart((ArrayGenerator)arrayCB.getValue(), (int)elementSpinner.getValue()));
+        displayButton.setOnAction(e -> {
+            if (arrayCB.getValue() != null) {
+                root.setCenter(ChartBuilder.displayChart((ArrayGenerator) arrayCB.getValue(), (int) elementSpinner.getValue()));
             }
         });
-        
+
         GridPane.setConstraints(arrayLabel, 0, 0);
         GridPane.setConstraints(arrayCB, 1, 0);
         GridPane.setConstraints(startElementLabel, 0, 1);
         GridPane.setConstraints(elementSpinner, 1, 1);
         GridPane.setConstraints(displayButton, 1, 2);
-       
-        grid.getChildren().addAll(arrayLabel,arrayCB,startElementLabel,elementSpinner,displayButton);
-        
+
+        grid.getChildren().addAll(arrayLabel, arrayCB, startElementLabel, elementSpinner, displayButton);
+
         root.setLeft(grid);
-       // root.setCenter(ChartBuilder.displayChart((ArrayGenerator)arrayCB.getValue(), (int)elementSpinner.getValue()));
+        // root.setCenter(ChartBuilder.displayChart((ArrayGenerator)arrayCB.getValue(), (int)elementSpinner.getValue()));
         Scene scene = new Scene(root, 1000, 700);
         return scene;
     }

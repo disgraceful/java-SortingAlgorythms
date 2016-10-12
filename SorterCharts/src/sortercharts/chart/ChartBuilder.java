@@ -63,7 +63,7 @@ public class ChartBuilder {
     private static void fillData(ObservableList<SortingAlgSeries> series) {
         int temp = initialLength + 5000;
         while (initialLength <= temp) {
-            
+
             series.stream()
                     .forEach((alg) -> {
 
@@ -71,13 +71,13 @@ public class ChartBuilder {
                         int count = 10;
                         for (int i = 0; i < count; i++) {
                             sortingArray = genContext.generate(initialLength, Integer.MAX_VALUE);
-                           //Test.print(sortingArray);
+                            //Test.print(sortingArray);
                             System.out.println(alg.getAlgorythm().getClass().toString());
                             long curTime = System.nanoTime();
                             alg.getAlgorythm().sort(sortingArray);
                             long afterTime = System.nanoTime() - curTime;
                             sumTime += afterTime;
-                            
+
                         }
                         double seconds = sumTime / 1_000_000_000.0 / count;
                         alg.getSeries().getData().add(new XYChart.Data(sortingArray.length, seconds));

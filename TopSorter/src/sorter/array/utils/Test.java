@@ -10,46 +10,60 @@ import sorter.algorythms.BubbleSortDescending;
 import sorter.algorythms.JavaSort;
 import sorter.algorythms.MergingSort;
 import sorter.algorythms.RecursiveInsertionSort;
-import sorter.array.generators.AscSortedArray;
-import sorter.array.generators.DescSortedArray;
-import sorter.array.generators.RandomArray;
+import sorter.array.generators.*;
+import sorter.strategy.*;
+import sorter.algorythms.*;
 
 /**
  *
  * @author Kashapov
  */
 public class Test {
-    public static void main(String[]args){
-        int []array = new DescSortedArray().generate(10,100);
-        int[]array1 = array.clone();
-        int[]array2 = array.clone();
-        int[]array3 = array.clone();
-        int[]array4 = array.clone();
-//        print(array);
-//        new RecursiveInsertionSort().sort(array);
-//        print(array);
-//        print(array1);
-//        new MergingSort().sort(array1);
-//        print(array1);
-//        print(array2);
-//        new JavaSort().sort(array2);
-//        print(array2);
-//        print(array3);
-//        new BubbleSortAscending().sort(array3);
-//        print(array3);
-        print(array4);
-        new BubbleSortDescending().sort(array4);
-        print(array4);        
-        
-        
+
+    public static void main(String[] args) {
+        // generatorsTest();
+        algsTest();
     }
-    
-    
-    public static void print(int []array){
+
+    public static void generatorsTest() {
+        GeneratorContext con = new GeneratorContext(new AscSortedArray());
+
+        int[] array = con.generate(10, 100);
+        con.setAlgorythm(new DescSortedArray());
+        array = con.generate(10, 100);
+        con.setAlgorythm(new RandomArray());
+        array = con.generate(10, 100);
+        con.setAlgorythm(new SortedWithLastRandom());
+        array = con.generate(10, 100);
+        print(array);
+    }
+
+    public static void algsTest() {
+        GeneratorContext con = new GeneratorContext(new AscSortedArray());
+        int[] array = con.generate(10, 100);
+        con.setAlgorythm(new DescSortedArray());
+        array = con.generate(10, 100);
+        con.setAlgorythm(new RandomArray());
+        array = con.generate(10, 100);
+        con.setAlgorythm(new SortedWithLastRandom());
+        array = con.generate(10, 100);
+
+        SortingContext sc = new SortingContext(new BubbleSortAscending());
+        sc.setAlgorythm(new BubbleSortDescending());
+        sc.setAlgorythm(new JavaSort());
+        sc.setAlgorythm(new MergingSort());
+        sc.setAlgorythm(new RecursiveInsertionSort());
+        
+        System.out.println("before: ");
+        print(array);
+        sc.sort(array);
+        System.out.println("after: ");
+        print(array);
+    }
+
+    public static void print(int[] array) {
         for (int i = 0; i < array.length; i++) {
-            System.out.print(array[i]+ " ");
-            
-            
+            System.out.print(array[i] + " ");
         }
         System.out.println(" ");
     }

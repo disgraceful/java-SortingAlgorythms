@@ -7,18 +7,15 @@ public class GeneratorContext {
 
     public GeneratorContext(ArrayGenerator generatorStrategy) throws NullPointerException {
         if (generatorStrategy == null) {
-            throw new NullPointerException("Sorting Algortytm is null");
+            throw new NullPointerException("Array Generator is null");
         } else {
             _generatorStrategy = generatorStrategy;
         }
     }
 
-    public GeneratorContext() {
-    }
-
     public void setAlgorythm(ArrayGenerator generatorStrategy) throws NullPointerException {
         if (generatorStrategy == null) {
-            throw new NullPointerException("Sorting Algortytm is null");
+            throw new NullPointerException("Array Generator is null");
         } else {
             _generatorStrategy = generatorStrategy;
         }
