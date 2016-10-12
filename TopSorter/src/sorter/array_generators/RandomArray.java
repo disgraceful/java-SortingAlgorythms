@@ -1,4 +1,4 @@
-package sorter.array.generators;
+package sorter.array_generators;
 
 public class RandomArray implements ArrayGenerator {
 

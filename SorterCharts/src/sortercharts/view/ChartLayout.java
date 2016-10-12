@@ -1,33 +1,23 @@
 package sortercharts.view;
 
-import javafx.scene.paint.Color;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
-import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.chart.LineChart;
 import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuBar;
-import javafx.scene.control.MenuItem;
 import javafx.scene.control.Spinner;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import sorter.algorythms.BubbleSortAscending;
-import sorter.strategy.SortingAlgorythm;
 import sortercharts.chart.ChartBuilder;
-import sorter.array.generators.ArrayGenerator;
-import sorter.array.generators.AscSortedArray;
-import sorter.array.generators.DescSortedArray;
-import sorter.array.generators.RandomArray;
-import sorter.array.generators.SortedWithLastRandom;
+import sorter.array_generators.ArrayGenerator;
+import sorter.array_generators.AscSortedArray;
+import sorter.array_generators.DescSortedArray;
+import sorter.array_generators.RandomArray;
+import sorter.array_generators.SortedWithLastRandom;
 
 public class ChartLayout extends Application {
 
@@ -49,14 +39,12 @@ public class ChartLayout extends Application {
     }
 
     private static Scene initDisplayScene() {
-
         final GridPane grid = new GridPane();
         grid.setPadding(new Insets(10, 10, 10, 10));
         grid.setVgap(10);
         grid.setHgap(15);
 
         final Label arrayLabel = new Label("Sorting array:");
-
         ObservableList<ArrayGenerator> variants = FXCollections.observableArrayList(
                 new AscSortedArray(),
                 new SortedWithLastRandom(),
@@ -87,7 +75,6 @@ public class ChartLayout extends Application {
         GridPane.setConstraints(displayButton, 1, 2);
 
         grid.getChildren().addAll(arrayLabel, arrayCB, startElementLabel, elementSpinner, displayButton);
-
         root.setLeft(grid);
         // root.setCenter(ChartBuilder.displayChart((ArrayGenerator)arrayCB.getValue(), (int)elementSpinner.getValue()));
         Scene scene = new Scene(root, 1000, 700);

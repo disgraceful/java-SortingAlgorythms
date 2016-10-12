@@ -5,14 +5,17 @@
  */
 package sorter.array.utils;
 
+import sorter.array_generators.GeneratorContext;
+import sorter.array_generators.DescSortedArray;
+import sorter.array_generators.SortedWithLastRandom;
+import sorter.array_generators.AscSortedArray;
+import sorter.array_generators.RandomArray;
 import sorter.algorythms.BubbleSortAscending;
 import sorter.algorythms.BubbleSortDescending;
 import sorter.algorythms.JavaSort;
 import sorter.algorythms.MergingSort;
-import sorter.algorythms.RecursiveInsertionSort;
-import sorter.array.generators.*;
+import sorter.algorythms.RecursiveSort;
 import sorter.strategy.*;
-import sorter.algorythms.*;
 
 /**
  *
@@ -20,10 +23,10 @@ import sorter.algorythms.*;
  */
 public class Test {
 
-    public static void main(String[] args) {
-        // generatorsTest();
-        algsTest();
-    }
+//    public static void main(String[] args) {
+//        // generatorsTest();
+//        algsTest();
+//    }
 
     public static void generatorsTest() {
         GeneratorContext con = new GeneratorContext(new AscSortedArray());
@@ -42,23 +45,23 @@ public class Test {
         GeneratorContext con = new GeneratorContext(new AscSortedArray());
         int[] array = con.generate(10, 100);
         con.setAlgorythm(new DescSortedArray());
-        array = con.generate(10, 100);
-        con.setAlgorythm(new RandomArray());
-        array = con.generate(10, 100);
-        con.setAlgorythm(new SortedWithLastRandom());
-        array = con.generate(10, 100);
+        array = con.generate(10000, Integer.MAX_VALUE);
+//        con.setAlgorythm(new RandomArray());
+//        array = con.generate(10, 100);
+//        con.setAlgorythm(new SortedWithLastRandom());
+//        array = con.generate(10000, 100);
 
         SortingContext sc = new SortingContext(new BubbleSortAscending());
         sc.setAlgorythm(new BubbleSortDescending());
         sc.setAlgorythm(new JavaSort());
         sc.setAlgorythm(new MergingSort());
-        sc.setAlgorythm(new RecursiveInsertionSort());
+        sc.setAlgorythm(new RecursiveSort());
         
         System.out.println("before: ");
-        print(array);
+        //print(array);
         sc.sort(array);
         System.out.println("after: ");
-        print(array);
+        //print(array);
     }
 
     public static void print(int[] array) {
