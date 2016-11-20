@@ -1,12 +1,10 @@
 package sorter.algorythms;
 
-import sorter.strategy.SortingAlgorythm;
-
-public class RecursiveSort implements SortingAlgorythm {
-    
+//@RegisterAlgorythm(RecursiveSort.class.getName())
+public class RecursiveSort extends SortingAlgorythm {    
     @Override
     public void sort(int[] arrayToSort) {
-        quickSort(arrayToSort);
+        quickSort(arrayToSort);  
     }
 
     /**
@@ -15,7 +13,7 @@ public class RecursiveSort implements SortingAlgorythm {
      *
      * @param array
      */
-    public static void quickSort(int[] array) {
+    private void quickSort(int[] array) {
         recursiveQuickSort(array, 0, array.length - 1);
     }
 
@@ -26,7 +24,7 @@ public class RecursiveSort implements SortingAlgorythm {
      * @param startIdx start index of the array
      * @param endIdx end index of the array
      */
-    public static void recursiveQuickSort(int[] array, int startIdx, int endIdx) {
+    private void recursiveQuickSort(int[] array, int startIdx, int endIdx) {
         
         int idx = partition(array, startIdx, endIdx);
 
@@ -50,7 +48,7 @@ public class RecursiveSort implements SortingAlgorythm {
      * @param right upper bound of the array
      * @return the partition index
      */
-    public static int partition(int[] array, int left, int right) {
+    private int partition(int[] array, int left, int right) {
         int pivot = array[left]; // taking first element as pivot
 
         while (left <= right) {
@@ -77,33 +75,3 @@ public class RecursiveSort implements SortingAlgorythm {
         return left;
     }
 }
-
-//    static void InsertionSortRecursion(int[] a, int unsortedIndex, int key, int sortedIndex) {
-//
-//        if (unsortedIndex <= a.length) {
-//
-//            if (sortedIndex == -1 && key == 0) {
-//                if (unsortedIndex != a.length) {
-//                    InsertionSortRecursion(a, unsortedIndex + 1, a[unsortedIndex], unsortedIndex - 1);
-//                }
-//            } else {
-//                if (sortedIndex == -1 || a[sortedIndex] < key) {
-//                    a[sortedIndex + 1] = key;
-//                    sortedIndex = 0;
-//                    key = 0;
-//                } else {
-//                    //slide
-//                    a[sortedIndex + 1] = a[sortedIndex];
-//                }
-//                InsertionSortRecursion(a, unsortedIndex, key, sortedIndex - 1);
-//            }
-//        }
-//    }
-//
-//    // wrapper
-//    static void InsertionSortRecursive(int[] a) {
-//        InsertionSortRecursion(a, 1, 0, -1);
-//    }
-//
-
-

@@ -1,9 +1,8 @@
 package sorter.algorythms;
 
 import java.util.Arrays;
-import sorter.strategy.SortingAlgorythm;
 
-public class JavaSort implements SortingAlgorythm {
+public class JavaSort extends SortingAlgorythm {
 
     @Override
     public void sort(int[] arrayToSort) {

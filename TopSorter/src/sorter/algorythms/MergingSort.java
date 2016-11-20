@@ -1,9 +1,7 @@
 package sorter.algorythms;
 
-import sorter.strategy.SortingAlgorythm;
 
-
-public class MergingSort implements SortingAlgorythm {
+public class MergingSort extends SortingAlgorythm {
     
     private int[] array;
     private int[]tempArray;
